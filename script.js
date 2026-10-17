@@ -1,4 +1,3 @@
-// Step 1: Basic math operator functions
 function add(a, b) {
     return a + b;
 }
@@ -18,12 +17,10 @@ function divide(a, b) {
     return a / b;
 }
 
-// Step 2: Variables for the parts of a calculator operation
 let firstNumber = "";
 let operator = "";
 let secondNumber = "";
 
-// Step 3: Operate function
 function operate(operator, a, b) {
     a = Number(a);
     b = Number(b);
@@ -42,7 +39,6 @@ function operate(operator, a, b) {
     }
 }
 
-// Basic testing in console as per instructions
 console.log("Add 5 + 3:", operate('+', 5, 3));
 console.log("Subtract 10 - 4:", operate('-', 10, 4));
 console.log("Multiply 6 * 7:", operate('*', 6, 7));
