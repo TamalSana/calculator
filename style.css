@@ -1,96 +1,51 @@
-/* Reset & basic styling */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f5f5f5;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    padding: 2rem;
+body { 
+    font-family: sans-serif; 
+    display: flex; 
+    justify-content: center; 
+    padding: 2rem; 
 }
 
-h1 {
-    text-align: center;
-    margin-bottom: 1.5rem;
+.calculator { 
+    width: 300px; 
+    border: 1px solid #ccc; 
 }
 
-/* Calculator container */
-.calculator {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    width: 100%;
-    max-width: 320px; /* Fixed width for better button control */
+.display { 
+    background: #333; 
+    color: white; 
+    text-align: right; 
+    padding: 1rem; 
 }
 
-/* Display */
-.display {
-    background: #222;
-    color: #fff;
-    font-size: 2.5rem;
-    text-align: right;
-    padding: 1.5rem;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    min-height: 80px;
-    word-wrap: break-word;
-    overflow: hidden;
+.buttons { 
+    display: flex; 
+    flex-direction: column; 
 }
 
-/* Buttons container - Flexbox layout */
-.buttons {
-    display: flex;
-    flex-wrap: wrap; /* Allows buttons to wrap to next line */
-    padding: 0.5rem;
-    gap: 0.5rem;
+.row { 
+    display: flex; 
 }
 
-/* Shared button styles */
-.btn {
-    /* Each row has 4 buttons, with gap of 0.5rem (total 1.5rem gap) */
-    /* (320px - 2rem padding - 1.5rem gap) / 4 */
-    flex: 1 1 calc(25% - 0.5rem);
-    height: 60px;
-    background: #e0e0e0;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    transition: background 0.2s ease;
+.btn { 
+    flex: 1; 
+    padding: 1rem; 
+    border: 1px solid #ccc; 
+    background: #bca316; 
 }
 
-/* Hover/active feedback */
-.btn:hover {
-    background: #d5d5d5;
-}
-.btn:active {
-    background: #c8c8c8;
+.btn.operator {
+    background: brown;
 }
 
-/* Operator vs number styling */
-.operator {
-    background: #ffb74d;
-    color: #fff;
-}
-.operator:hover {
-    background: #ffa726;
-}
 
-/* Wider buttons */
-.zero {
-    flex: 2 1 calc(50% - 0.5rem); /* Takes 2 slots */
-}
-.equals {
-    flex: 1 1 calc(25% - 0.5rem); /* Normally 1 slot */
-    background: #4caf50;
-    color: white;
-}
-.equals:hover {
-    background: #43a047;
+.equals { 
+    flex: 1; 
+    background: #4a0d7a; 
+    color: white; 
 }
