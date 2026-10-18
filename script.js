@@ -1,45 +1,62 @@
-function add(a, b) {
-    return a + b;
+// Get elements
+const display = document.getElementById('display');
+const buttons = document.querySelectorAll('.btn');
+
+let currentInput = "0";
+let firstNumber = null;
+let operator = null;
+let resetDisplay = false; 
+
+// Update display function
+function updateDisplay() {
+    display.textContent = currentInput;
 }
 
-function subtract(a, b) {
-    return a - b;
-}
+// Button click logic
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        //dataset.value: extracts data-value for each btn element
+        const value = button.dataset.value;
 
-function multiply(a, b) {
-    return a * b;
-}
+        // Number button logic (0-9 and .)
+        if (button.classList.contains('number')) {
+            if (resetDisplay) {
+                currentInput = value;
+                resetDisplay = false;
+            } else {
+                currentInput = (currentInput === "0" && value !== ".") ? value : currentInput + value;
+            }
+        }
 
-function divide(a, b) {
-    if (b === 0) {
-        return "Error: Division by zero";
-    }
-    return a / b;
-}
+        // Operator button logic (+, -, *, /)
+        if (button.classList.contains('operator') && value !== "AC" && value !== "=") {
+            if (firstNumber !== null && operator !== null) {
+                // Calculate intermediate result
+                currentInput = String(operate(operator, firstNumber, currentInput));
+                firstNumber = currentInput;
+            } else {
+                firstNumber = currentInput;
+            }
+            operator = value;
+            resetDisplay = true;
+        }
 
-let firstNumber = "";
-let operator = "";
-let secondNumber = "";
+        // Equals button logic
+        if (value === "=" && firstNumber !== null && operator !== null) {
+            currentInput = String(operate(operator, firstNumber, currentInput));
+            firstNumber = null;
+            operator = null;
+            resetDisplay = true;
+        }
 
-function operate(operator, a, b) {
-    a = Number(a);
-    b = Number(b);
+        // AC button logic
+        if (value === "AC") {
+            currentInput = "0";
+            firstNumber = null;
+            operator = null;
+            resetDisplay = false;
+        }
 
-    switch (operator) {
-        case '+':
-            return add(a, b);
-        case '-':
-            return subtract(a, b);
-        case '*':
-            return multiply(a, b);
-        case '/':
-            return divide(a, b);
-        default:
-            return null;
-    }
-}
-
-console.log("Add 5 + 3:", operate('+', 5, 3));
-console.log("Subtract 10 - 4:", operate('-', 10, 4));
-console.log("Multiply 6 * 7:", operate('*', 6, 7));
-console.log("Divide 15 / 3:", operate('/', 15, 3));
+        updateDisplay();
+    });
+});
